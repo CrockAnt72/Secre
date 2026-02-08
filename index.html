@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pentru Eleonora ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:'Segoe UI',sans-serif;
+    height:100vh;
+    overflow:hidden;
+    color:white;
+    text-align:center;
+}
+
+/* fundal trandafiri */
+.background{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:url("https://images.unsplash.com/photo-1518895949257-7621c3c786d7?q=80&w=1600") center/cover no-repeat;
+    filter:brightness(0.5);
+    z-index:-3;
+}
+
+/* sclipici */
+.sparkle{
+    position:fixed;
+    width:100%;
+    height:100%;
+    background-image:radial-gradient(white 1px,transparent 1px);
+    background-size:60px 60px;
+    animation:move 25s linear infinite;
+    opacity:.4;
+    z-index:-2;
+}
+@keyframes move{
+    from{transform:translateY(0);}
+    to{transform:translateY(-300px);}
+}
+
+/* inimioare */
+.heart{
+    position:fixed;
+    top:-10px;
+    color:#ff4d6d;
+    font-size:20px;
+    animation:fall linear forwards;
+}
+@keyframes fall{
+    to{
+        transform:translateY(110vh);
+        opacity:0;
+    }
+}
+
+.container{
+    position:relative;
+    top:50%;
+    transform:translateY(-50%);
+    padding:25px;
+}
+
+h1{
+    font-size:3em;
+    text-shadow:0 0 20px rgba(255,255,255,.9);
+}
+
+p{
+    font-size:1.4em;
+    max-width:700px;
+    margin:15px auto;
+}
+
+#message{
+    margin-top:15px;
+    font-size:1.2em;
+    min-height:30px;
+}
+
+/* butoane */
+button{
+    margin:15px;
+    padding:15px 30px;
+    font-size:1.2em;
+    border:none;
+    border-radius:14px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+#yes{
+    background:#ff4d6d;
+    color:white;
+}
+#yes:hover{transform:scale(1.15);}
+
+#no{
+    background:#6c63ff;
+    color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="background"></div>
+<div class="sparkle"></div>
+
+<div class="container">
+<h1>Eleonora 🌹</h1>
+
+<p>Au trecut 6 luni de când ești lângă mine…  
+6 luni în care mi-ai arătat ce înseamnă să fii iubit cu adevărat.</p>
+
+<p>Îți mulțumesc că ai avut răbdare cu mine,  
+că m-ai susținut mereu și că mi-ai făcut zilele mai frumoase doar fiind tu.</p>
+
+<p>Te iubesc mai mult decât pot explica în cuvinte… ❤️</p>
+
+<h2>Vrei să fii Valentine-ul meu? 💌</h2>
+
+<button id="yes">Da, bineînțeles ❤️</button>
+<button id="no">Nu 😢</button>
+
+<div id="message"></div>
+</div>
+
+<!-- muzică -->
+<iframe width="0" height="0"
+src="https://www.youtube.com/embed/V2G8ESoDXm8?autoplay=1&loop=1&playlist=V2G8ESoDXm8"
+allow="autoplay"></iframe>
+
+<script>
+/* inimioare continue */
+setInterval(()=>{
+    const h=document.createElement("div");
+    h.className="heart";
+    h.innerHTML="❤";
+    h.style.left=Math.random()*100+"vw";
+    h.style.animationDuration=(3+Math.random()*4)+"s";
+    document.body.appendChild(h);
+    setTimeout(()=>h.remove(),7000);
+},300);
+
+/* buton NU */
+const no=document.getElementById("no");
+const yes=document.getElementById("yes");
+const message=document.getElementById("message");
+
+let clicks=0;
+
+const texts=[
+"Cred că a fost din greșeală, te iert :D",
+"E ud telefonul cumva? Cred că e bug ceva",
+"Ba dă-o dreq, virușii ăștia",
+"Mai apasă o dată că vezi tu -_-",
+"Nu ai scăpare :)"
+];
+
+no.onclick=()=>{
+    message.textContent=texts[clicks] || "";
+    clicks++;
+
+    if(clicks===5){
+        setTimeout(()=>no.style.display="none",800);
+    }
+};
+
+/* final cinematic + vibratie */
+yes.onclick=()=>{
+    if(navigator.vibrate){
+        navigator.vibrate([200,100,200,100,400]);
+    }
+
+    document.body.innerHTML=`
+    <div style="
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        height:100vh;
+        background:black;
+        color:white;
+        flex-direction:column;
+        font-family:sans-serif;
+        text-align:center;
+        animation:fade 2s ease forwards;
+    ">
+        <h1 style="font-size:3em;margin-bottom:20px;">❤️ Te iubesc, Eleonora ❤️</h1>
+        <p style="font-size:1.5em;">Mulțumesc că ești în viața mea.</p>
+    </div>
+
+    <style>
+    @keyframes fade{from{opacity:0}to{opacity:1}}
+    </style>
+    `;
+};
+</script>
+
+</body>
+</html>
